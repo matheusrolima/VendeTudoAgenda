@@ -1,0 +1,21 @@
+<div class="p-3 mb-2 bg-secondary text-white">{{titulo}}</div>
+
+<div class="container">
+	<div class="panel-body text-center">
+		<p-growl [(value)]="msgs"></p-growl>
+		<p-confirmDialog></p-confirmDialog>
+		<div class="row">
+			<div class="col-sm-10">
+				<input placeholder="Digite aqui o nome da nova categoria" type="text" [(ngModel)]="categoria.nome" name="nome" pInputText maxlength="64"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-10 pt-2">
+				<div class="float-right">
+					<button pButton (click)="voltarTelaPrincipal()" type="button" label="VOLTAR" class="ui-button-secondary"></button>
+					<button pButton (click)="salvar()" type="button" label="SALVAR"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

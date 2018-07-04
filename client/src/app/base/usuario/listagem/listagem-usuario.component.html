@@ -1,0 +1,49 @@
+<div class="p-3 mb-2 bg-secondary text-white">LISTA DE USUÁRIOS</div>
+
+<div class="row justify-content-center align-items-center mt-4">
+	<p-growl [(value)]="msgs"></p-growl>
+	<div class="col-10 text-center">
+		<p-dataTable [rows]="10" selectionMode="single" [(selection)]="selectedUsuario" [value]="usuarios" [resizableColumns]="true" [paginator]="true" emptyMessage="Nenhum registro encontrado."
+					 tableStyleClass="table user-list table-hover">
+			<p-column header="Nome" field="nome" [sortable]="true" [style]="{'width':'150px','text-align': 'center'}"></p-column>
+			<p-column header="CPF/CNPJ" field="cpf" [sortable]="true" [style]="{'width':'150px','text-align': 'center'}"></p-column>
+			<p-column header="E-mail" field="email" [sortable]="true" [style]="{'width':'150px','text-align': 'center'}"></p-column>
+			<p-column header="Função" field="funcao" [sortable]="true" [style]="{'width':'150px','text-align': 'center'}"></p-column>
+		</p-dataTable>
+
+	</div>
+</div>
+
+<div class="row justify-content-center mt-3 hidden-xs-down">
+	<div class="col-1">
+		<button pButton *ngIf="usuarioAutorizado" (click)="novo()" type="button" label="NOVO" style="width:120px;"></button>
+	</div>
+	<div class="col-9">
+		<div class="float-right">
+			<button pButton (click)="voltarTelaPrincipal()" type="button" label="VOLTAR" class="ui-button-secondary" style="width:120px;"></button>
+			<button pButton  *ngIf="usuarioAutorizado" [disabled]="!selectedUsuario" (click)="excluir()" type="button" label="EXCLUIR" class="ui-button-danger" style="width:120px;"></button>
+			<button pButton [disabled]="!selectedUsuario" (click)="editar()" type="button" label="EDITAR" style="width:120px;"></button>
+		</div>
+	</div>
+</div>
+
+<div class="hidden-sm-up">
+	<br><br>
+	<div class="row">
+		<div class="col-xs-6 responsive-btn-center">
+			<button pButton (click)="novo()" type="button" label="NOVO" style="width:120px;"></button>
+		</div>
+		<div class="col-xs-6">
+			<button pButton (click)="editar()" type="button" label="EDITAR" style="width:120px;"></button>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-xs-6 responsive-btn-center">
+			<button pButton (click)="excluir()" type="button" label="EXCLUIR" class="ui-button-danger" style="width:120px;"></button>
+		</div>
+		<div class="col-xs-6">
+			<button pButton (click)="voltarTelaPrincipal()" type="button" label="VOLTAR" class="ui-button-secondary" style="width:120px;"></button>
+		</div>
+	</div>
+</div>

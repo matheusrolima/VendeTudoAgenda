@@ -1,0 +1,51 @@
+<div class="p-3 mb-2 bg-secondary text-white">LISTA DE CONTATOS</div>
+<div class="form-group row">
+	<p-growl [(value)]="msgs"></p-growl>
+	<p-confirmDialog></p-confirmDialog>
+	<div class="col-1"></div>
+	<div class="col-10 text-center">
+
+		<p-dataTable [rows]="10" selectionMode="single" [(selection)]="selectedContato" [value]="contato" [resizableColumns]="true" [paginator]="true" emptyMessage="Nenhum registro encontrado."
+					 tableStyleClass="table user-list table-hover">
+			<p-column header="Nome" field="nome" [sortable]="true" [style]="{'width':'150px','text-align': 'center'}"></p-column>
+			<p-column header="CPF/CNPJ" field="cpf" [sortable]="true" [style]="{'width':'150px','text-align': 'center'}">
+				<ng-template let-row="rowData" pTemplate="body">
+					{{row.cpf ? row.cpf : row.cnpj}}
+				</ng-template>
+			</p-column>
+			<p-column header="Categoria" field="categoria" [sortable]="true" [style]="{'width':'150px','text-align': 'center'}"></p-column>
+			<p-column header="Ligacões" field="ligacoes" [sortable]="true" [style]="{'width':'150px','text-align': 'center'}"></p-column>
+		</p-dataTable>
+
+	</div>
+</div>
+
+<div class="form-group hidden-xs-down">
+	<div class="container">
+		<div class="row justify-content-end">
+			<div class="col-4">
+				<button pButton (click)="gerarRelatorio()" type="button" label="EXPORTAR" class="ui-button-secondary"></button>
+				<button pButton (click)="voltarTelaPrincipal()" type="button" label="VOLTAR" class="ui-button-secondary"></button>
+				<button pButton [disabled]="!selectedContato" (click)="detalhes()" type="button" label="DETALHES"></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="hidden-sm-up">
+	<br><br>
+	<div class="row justify-content-around">
+		<div class="col-4">
+			<button pButton (click)="gerarRelatorio()" type="button" label="EXPORTAR" class="ui-button-secondary"></button>
+		</div>
+		<div class="col-4">
+			<button pButton (click)="voltarTelaPrincipal()" type="button" label="VOLTAR" class="ui-button-secondary"></button>
+		</div>
+	</div>
+	<br>
+	<div class="row justify-content-around">
+		<div class="col-4">
+			<button pButton [disabled]="!selectedContato" (click)="detalhes()" type="button" label="DETALHES"></button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<section >
+
+    <form role="form" #form="ngForm" >
+        <div class="row page-login">
+            <div class="col-md-5"></div>
+            <div class="col-md-3 shadow col-xs-12" style="background-color: rgb(139, 138, 138); padding-right: 20px;">
+                <p-growl [(value)]="msgs"></p-growl>
+                <img src="../../assets/imagens/network.png" style="margin-top: 10px;" width="100" height="100">
+                <br/>
+                <br/>
+                <span class="ui-float-label">
+                        <input id="user" class="form-control user" [(ngModel)]="loginRequest.email" name="usuario" type="text" size="30" (keyup.enter)="logar()" maxlength="255" pInputText placeholder="Usuário">
+                        <label for="float-input"></label>
+                </span>
+                <br/>
+                <span class="ui-float-label" >
+                        <input id="password"  class="form-control senha" [(ngModel)]="loginRequest.senha" name="senha" type="password" (keyup.enter)="logar()"  maxlength="16" size="30" pInputText placeholder="Senha">
+                        <label for="float-input"></label>
+                </span>
+                <br/>
+                <a  class="btn btn-default" style="color: white;" [ngClass]="{disabled:!loginRequest.email}" (click)="esqueciSenha()">Esqueci minha senha</a>
+                <br/>
+                <br/>
+
+                <button  class="btn btn-default"  style="margin-bottom: 10px;" (click) = "logar()"  pButton type="button" label="Entrar" [disabled]="!loginRequest.email || !loginRequest.senha" ></button>
+            </div>
+        </div>
+    </form>
+</section>

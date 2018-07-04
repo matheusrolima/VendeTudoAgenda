@@ -1,0 +1,103 @@
+<form role="form">
+	<div class="p-2 mb-2 bg-secondary text-white">USUÁRIO</div>
+	<p-growl [(value)]="msgs"></p-growl>
+	<div class="panel-body">
+		<div class="p-2 ml-4">
+			<div class="form-group row">
+				<label for="nome" class="col-sm-1 col-form-label">
+					<p style="color: red;display: inline;">*</p>Nome</label>
+				<div class="col-sm-4">
+					<input pInputText type="text" [(ngModel)]="usuario.nome" name="nome" maxlength="256" minlength="8"/>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="nome" class="col-sm-1 col-form-label">
+					<p style="color: red;display: inline;">*</p> CPF</label>
+				<div class="col-sm-4">
+					<p-inputMask placeholder="___.___.___-__" type="text" [(ngModel)]="usuario.cpf" name="cpf" mask="999.999.999-99"></p-inputMask>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="email" class="col-sm-1 col-form-label">
+					<p style="color: red;display: inline;">*</p>E-mail</label>
+				<div class="col-sm-4">
+					<input pInputText type="text" [(ngModel)]="usuario.email" id="email" name="email" maxlength="64" minlength="8"/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="dataNascimento" class="col-sm-1 col-form-label">
+					<p style="color: red;display: inline;">*</p>Nascimento</label>
+				<div class="col-sm-4">
+					<p-calendar [locale]="configCalendario" yearRange="1900:2019" [monthNavigator]="true" [yearNavigator]="true" [style]="{'margin-right':'50px'}"
+								[(ngModel)]="usuario.dataNascimento"
+								name="dataNascimento" id="dataNascimento" [showIcon]="true" dateFormat="dd/mm/yy"></p-calendar>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="endereco" class="col-sm-1 col-form-label">
+					<p style="color: red;display: inline;">*</p>Endereço</label>
+				<div class="col-sm-4">
+					<input type="text" [(ngModel)]="usuario.endereco" id="endereco" name="endereco" pInputText maxlength="64" minlength="8"/>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for="telefoneFixo" class="col-sm-1 col-form-label"><p style="color: red;display: inline;">*</p>Telefone Fixo</label>
+				<div class="col-sm-2">
+					<p-inputMask [(ngModel)]="usuario.telefoneFixo" type="text" placeholder="(  )" id="telefoneFixo" name="telefoneFixo" mask="(99) 9999-9999"></p-inputMask>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="celular" class="col-sm-1 col-form-label">
+					<p style="color: red;display: inline;">*</p>Celular</label>
+				<div class="col-sm-2">
+					<p-inputMask [(ngModel)]="usuario.celular" type="text" placeholder="(  )" id="celular" name="celular" mask="(99) 99999-9999"></p-inputMask>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="funcao" class="col-sm-1 col-form-label">
+					<p style="color: red;display: inline;">*</p>Função</label>
+				<div class="col-sm-5">
+					<p-radioButton id="funcaoAdministrador" name="funcao" value="ADMINISTRADOR" label="Administrador" [(ngModel)]="usuario.funcao"></p-radioButton>
+					<p-radioButton id="funcaoVendedor" name="funcao" value="VENDEDOR" label="Vendedor" [(ngModel)]="usuario.funcao"></p-radioButton>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="senha" class="col-sm-1 col-form-label">
+					<p style="color: red;display: inline;">*</p>Senha</label>
+				<div class="col-sm-4">
+					<input type="password" [(ngModel)]="usuario.senha" id="senha" name="senha" pInputText/>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="confirmacaoSenha" class="col-sm-1 col-form-label">
+					<p style="color: red;display: inline;">*</p>Confirmação</label>
+				<div class="col-sm-4">
+					<input type="password" [(ngModel)]="usuario.confirmacaoSenha" id="confirmacaoSenha" name="confirmacaoSenha" pInputText/>
+				</div>
+			</div>
+
+			<div class="form-group hidden-xs-down">
+				<div class="col-sm-4 offset-7 text-right">
+					<button pButton (click)="voltar()" type="button" label="Voltar" class="ui-button-secondary" style="width:150px;"></button>
+					<button pButton (click)="salvar()" [disabled]="!usuario.nome || !usuario.cpf || !usuario.email || !usuario.dataNascimento || !usuario.endereco || !usuario.telefoneFixo
+							|| !usuario.celular || !usuario.funcao || !usuario.senha || !usuario.confirmacaoSenha" type="button" label="Salvar" style="width:150px;"></button>
+				</div>
+			</div>
+
+			<div class="form-group hidden-sm-up">
+				<div class="row row justify-content-around">
+					<div class="col-6">
+						<button pButton (click)="voltar()" type="button" label="Voltar" class="ui-button-secondary" style="width:150px;"></button>
+					</div>
+					<div class="col-6">
+						<button pButton (click)="salvar()" [disabled]="!usuario.nome || !usuario.cpf || !usuario.email || !usuario.dataNascimento || !usuario.endereco || !usuario.telefoneFixo
+							|| !usuario.celular || !usuario.funcao || !usuario.senha || !usuario.confirmacaoSenha" type="button" label="Salvar" style="width:150px;"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

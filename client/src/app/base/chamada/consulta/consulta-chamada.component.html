@@ -1,0 +1,56 @@
+<div class="p-3 mb-2 bg-secondary text-white">DETALHAMENTO DE LIGAÇÕES</div>
+<div class="p-4 ml-5">
+	<section>
+		<form role="form">
+			<div class="form-group row">
+				<label for="nome" class="col-sm-1 col-form-label">
+					<b>NOME:</b>
+				</label>
+				<div class="col-sm-9">
+					<b>
+						<label id="nome" name="nome" class="col-form-label">{{chamada.nome}}</label>
+					</b>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="data" class="col-sm-1 col-form-label">
+					<b>DATA:</b>
+				</label>
+				<div class="col-sm-9">
+					<b>
+						<label id="data" name="data" class="col-form-label">{{chamada.data | date:"dd/MM/yyyy"}}</label>
+					</b>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="duracao" class="col-sm-1 col-form-label">
+					<b>DURAÇÃO:</b>
+				</label>
+				<div class="col-sm-9">
+					<b>
+						<label id="duracao" name="duracao" class="col-form-label">{{duracao}}</label>
+					</b>
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col">
+					<label for="descricao" style="color:gray" class="col-sm-1 col-form-label">
+						<b>DESCRIÇÃO</b>
+					</label>
+					<div class="col">
+                        <textarea [disabled]="true" [rows]="15" name="descricao" value={{chamada.descricao}} maxlength="2048" [cols]="150" pInputTextarea autoResize="autoResize"
+								  id="descricao"></textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row mt-4">
+				<div class="col-sm-1 offset-8 text-right">
+					<button pButton (click)="voltarTelaPrincipal()" type="button" label="VOLTAR" class="ui-button-secondary" style="width:120px;"></button>
+				</div>
+			</div>
+
+
+		</form>
+	</section>
+</div>

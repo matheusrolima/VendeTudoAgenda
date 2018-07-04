@@ -1,0 +1,42 @@
+<div class="p-3 mb-2 bg-secondary text-white">LISTA DE CATEGORIAS</div>
+
+<div class="row justify-content-center align-items-center mt-4">
+	<p-growl [(value)]="msgs"></p-growl>
+	<p-confirmDialog></p-confirmDialog>
+
+	<div class="col-10 text-rigth">
+		<p-dataTable [rows]="10" selectionMode="single" [(selection)]="selectedCategoria" [value]="categorias" [resizableColumns]="true" [paginator]="true" emptyMessage="Nenhum registro encontrado."
+					 tableStyleClass="table user-list table-hover">
+			<p-column header="Nome" field="nome" [sortable]="true"></p-column>
+		</p-dataTable>
+	</div>
+
+</div>
+
+<div class="row justify-content-center  mt-3 hidden-xs-down">
+	<div class="col-9 offset-1">
+		<div class="float-right">
+			<button pButton (click)="voltarTelaPrincipal()" type="button" label="VOLTAR" class="ui-button-secondary"></button>
+			<button pButton [disabled]="(!usuarioFuncao || !selectedCategoria)" (click)="excluir()" type="button" label="EXCLUIR" class="ui-button-danger"></button>
+			<button pButton [disabled]="(!selectedCategoria || !usuarioFuncao)" (click)="editar()" type="button" label="EDITAR"></button>
+		</div>
+	</div>
+</div>
+
+<div class="hidden-sm-up">
+	<br><br>
+	<div class="row">
+		<div class="col-xs-6 responsive-btn-center">
+			<button pButton (click)="voltarTelaPrincipal()" type="button" label="VOLTAR" class="ui-button-secondary"></button>
+		</div>
+		<div class="col-xs-6">
+			<button pButton [disabled]="(!usuarioFuncao || !usuarioAutorizado || !selectedCategoria)" (click)="excluir()" type="button" label="EXCLUIR" class="ui-button-danger"></button>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-xs-6 responsive-btn-center">
+			<button pButton [disabled]="!selectedCategoria" (click)="editar()" type="button" label="EDITAR"></button>
+		</div>
+	</div>
+</div>

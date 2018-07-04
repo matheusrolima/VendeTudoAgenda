@@ -1,0 +1,165 @@
+<p-growl [(value)]="msgs"></p-growl>
+<div class="dialogHome">
+    <p-dialog header="CONSULTA" [(visible)]="display" [modal]="true" [responsive]="true" [width]="600" [minWidth]="200"
+              [minY]="70">
+
+        <div class="row">
+            <div class="col-md-10">
+                <input type="text" id="valor" [(ngModel)]="valorPesquisa" class="form-control" name="nome"
+                       maxlength="256">
+            </div>
+            <div class="col-md-2">
+                <button type="button" [disabled]="!valorPesquisa || (option === 'Selecione')" pButton
+                        icon="fas fa-search" (click)="buscar()"></button>
+            </div>
+        </div>
+        <br/>
+        <div class="row justify-content-start pb-5">
+            <div class="col-md-10">
+                <p-dropdown [options]="tipo" id="op" [(ngModel)]="option" name="option"
+                            [style]="{'width':'100%'}"></p-dropdown>
+            </div>
+        </div>
+        <div class="row pt-5">
+            <div class="col-md-3 offset-9">
+                <button type="button" pButton (click)="display=false" label="Voltar"></button>
+            </div>
+        </div>
+
+    </p-dialog>
+</div>
+
+<div class="col-md-12 hidden-xs-down">
+    <div class="home">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-8">
+                    <div class="row">
+
+                        <a class=" homeIcon" (click)="alterarBack()" [routerLink]="['/cadastros/contato/novo']">
+                            <i class="fas fa-user-plus"></i>
+                            <span class="text-center">Incluir contato</span>
+                        </a>
+
+                        <a class="homeIcon" (click)="alterarBack()" [routerLink]="['/cadastros/contato']">
+                            <i class="fas fa-address-book"></i>
+                            <span class="text-center">Listar contatos</span>
+                        </a>
+
+                        <a class="homeIcon" (click)="showDialog()">
+                            <i class="fas fa-search"></i>
+                            <span class="text-center">Consultar um contato</span>
+                        </a>
+
+                        <a class="homeIcon" (click)="alterarBack()" [routerLink]="['/cadastros/categoria/novo']">
+                            <i class="fa fa-plus-square"></i>
+                            <span class="text-center">Incluir categoria</span>
+                        </a>
+
+                    </div>
+
+                    <div class="row">
+
+                        <a class="homeIcon" (click)="alterarBack()" [routerLink]="['/cadastros/categoria']">
+                            <i class="fas fa-book"></i>
+                            <span class="text-center">Listar categorias</span>
+                        </a>
+
+                        <a class="homeIcon" (click)="alterarBack()" [routerLink]="['/cadastros/chamada/novo']">
+                            <i class="fa fa-phone"></i>
+                            <span class="text-center">Registrar ligações</span>
+
+                        </a>
+
+                        <a class="homeIcon" (click)="gerarRelatorio($event)">
+                            <i class="fa fa-phone-square"></i>
+                            <span class="text-center">Relatório de clientes</span>
+                        </a>
+
+                        <a class="homeIcon" (click)="alterarBack()" [routerLink]="['/cadastros/usuario']">
+                            <i class="fas fa-user-plus"></i>
+                            <span class="text-center">Listar usuários</span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="col-md-8"></div>
+                <button (click)="sair()" pButton type="button" label="Sair"></button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="home hidden-sm-up">
+    <div class="row">
+        <div class="col-xs-6 responsive-btn-pagi-init">
+            <a class=" homeIcon" (click)="alterarBack()" [routerLink]="['/cadastros/contato/novo']">
+                <i class="fas fa-user-plus"></i>
+                <span class="text-center">Incluir contato</span>
+            </a>
+        </div>
+        <div class="col-xs-6">
+            <a class="homeIcon" (click)="alterarBack()" [routerLink]="['/cadastros/contato']">
+                <i class="fas fa-address-book"></i>
+                <span class="text-center">Listar contatos</span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 responsive-btn-pagi-init" style="padding-right: 30px;">
+            <a class="homeIcon" (click)="showDialog()">
+                <i class="fas fa-search"></i>
+                <span class="text-center">Consultar um contato</span>
+            </a>
+        </div>
+        <div class="col-xs-6">
+            <a class="homeIcon" (click)="alterarBack()" [routerLink]="['/cadastros/categoria/novo']">
+                <i class="fa fa-plus-square"></i>
+                <span class="text-center">Incluir categoria</span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 responsive-btn-pagi-init" style="padding-right: 35px;">
+            <a class="homeIcon" (click)="alterarBack()" [routerLink]="['/cadastros/categoria']">
+                <i class="fas fa-book"></i>
+                <span class="text-center">Listar categorias</span>
+            </a>
+        </div>
+        <div class="col-xs-6">
+            <a class="homeIcon" (click)="alterarBack()" [routerLink]="['/cadastros/chamada/novo']">
+                <i class="fa fa-phone"></i>
+                <span class="text-center">Registrar ligações</span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 responsive-btn-pagi-init" style="padding-right: 35px;">
+            <a class="homeIcon" (click)="gerarRelatorio($event)">
+                <i class="fa fa-phone-square"></i>
+                <span class="text-center">Relatório de clientes</span>
+            </a>
+        </div>
+        <div class="col-xs-6">
+            <a class="homeIcon" (click)="alterarBack()" [routerLink]="['/cadastros/usuario']">
+                <i class="fas fa-user-plus"></i>
+                <span class="text-center">Listar usuários</span>
+            </a>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-xs-12" style="padding-left: 140px;">
+            <button (click)="sair()" style="padding-left: 30px; padding-right: 30px;" pButton type="button"
+                    label="Sair"></button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,25 @@
+<div class="p-3 mb-2 bg-secondary text-white">LISTA DE CHAMADAS</div>
+
+
+<div class="row justify-content-center align-items-center mt-4">
+    <p-growl [(value)]="msgs"></p-growl>
+    <div class="col-10 text-center">
+		<p-dataTable [rows]="10"  selectionMode="single" [(selection)]="chamadaSelecionada" [value]="chamada" [resizableColumns]="true" [paginator]="true" emptyMessage="Nenhum registro encontrado." tableStyleClass="table user-list table-hover">
+			<p-column  header="Nome" field="nome" [sortable]="true"  [style]="{'width':'150px','text-align': 'center'}"></p-column>
+			<p-column header="Data" field="data" [sortable]="true"  [style]="{'width':'150px','text-align': 'center'}">
+				<ng-template let-row="rowData" pTemplate="body">
+					{{row.data | date:'dd/MM/yyyy'}}
+				</ng-template>
+			</p-column>
+			<p-column header="Duração" field="duracao" [sortable]="true"  [style]="{'width':'150px','text-align': 'center'}"></p-column>
+		</p-dataTable>
+    </div>
+</div>
+<div class="row justify-content-center  mt-3">
+    <div class="col-9">
+        <div class="float-right">
+            <button pButton (click)="voltarTelaPrincipal()" type="button" label="VOLTAR" class="ui-button-secondary" ></button>
+            <button pButton (click)="abrir()" [disabled]="!chamadaSelecionada" type="button" label="ABRIR"></button>
+        </div>
+    </div>
+</div>
